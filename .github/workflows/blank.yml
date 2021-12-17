@@ -6,5 +6,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        auth: ["Bearer $(base64 <<< ${{ secrets.READ_PACKAGES_TOKEN }})"]
+
     steps:
-      - run: 'curl -X GET -H "Authorization: Bearer $(base64 <<< ${{ secrets.READ_PACKAGES_TOKEN }})" https://ghcr.io/v2/jcansdale/gpr/tags/list'
+      - run: 'curl -X GET -H "Authorization: ${{ matrix.auth }}" https://ghcr.io/v2/jcansdale/gpr/tags/list'
