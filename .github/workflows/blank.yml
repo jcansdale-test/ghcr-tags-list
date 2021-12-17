@@ -1,0 +1,10 @@
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: 'curl -X GET --head -H "Authorization: Bearer (${{ secrets.GITHUB_TOKEN }} | base64)" https://ghcr.io/v2/jcansdale/gpr/tags/list'
