@@ -7,4 +7,4 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: 'curl -X GET --head -H "Authorization: Bearer (${{ secrets.READ_PACKAGES_TOKEN }} | base64)" https://ghcr.io/v2/jcansdale/gpr/tags/list'
+      - run: 'curl -X GET --head -H "Authorization: Bearer $(base64 <<< ${{ secrets.READ_PACKAGES_TOKEN }})" https://ghcr.io/v2/jcansdale/gpr/tags/list'
