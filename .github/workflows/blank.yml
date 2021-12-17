@@ -11,6 +11,6 @@ jobs:
         auth: ["Bearer $(base64 <<< $GITHUB_TOKEN)", "Basic $(base64 <<< username:$GITHUB_TOKEN)"]
 
     steps:
-      - run: 'curl -X GET -H "Authorization: ${{ matrix.auth }}" https://ghcr.io/v2/jcansdale/gpr/tags/list'
+      - run: 'curl -X GET -H "Authorization: ${{ matrix.auth }}" https://ghcr.io/v2/jcansdale/gpr/tags/list --fail-with-body'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
