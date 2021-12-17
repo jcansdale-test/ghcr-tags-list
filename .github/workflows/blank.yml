@@ -8,9 +8,10 @@ jobs:
 
     strategy:
       matrix:
-        auth: ["Bearer $(base64 <<< $READ_PACKAGES_TOKEN)"]
+        auth: ["Bearer $(base64 <<< $READ_PACKAGES_TOKEN)", "Bearer $(base64 <<< $GITHUB_TOKEN)"]
 
     steps:
       - run: 'curl -X GET -H "Authorization: ${{ matrix.auth }}" https://ghcr.io/v2/jcansdale/gpr/tags/list'
         env:
           READ_PACKAGES_TOKEN: ${{ secrets.READ_PACKAGES_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
